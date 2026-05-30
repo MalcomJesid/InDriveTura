@@ -1,0 +1,7 @@
+{
+  "name": "InDriveTura",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
