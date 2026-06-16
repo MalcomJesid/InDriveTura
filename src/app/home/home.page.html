@@ -21,13 +21,21 @@
   <!-- Lista de perfiles -->
   <ion-list *ngIf="!cargando && !error">
     <ion-list-header>
-      <ion-label>Selecciona tu perfil</ion-label>
+      <ion-label>
+        <h2>Selecciona tu perfil</h2>
+        <p>{{ perfiles.length }} conductores disponibles</p>
+      </ion-label>
     </ion-list-header>
 
-    <ion-item *ngFor="let perfil of perfiles" button>
+    <ion-item
+      *ngFor="let perfil of perfiles"
+      button
+      detail="true"
+      (click)="seleccionarPerfil(perfil)">
       <ion-icon name="person-circle-outline" slot="start" color="primary"></ion-icon>
       <ion-label>{{ perfil.nombre_perfil }}</ion-label>
     </ion-item>
+
   </ion-list>
 
 </ion-content>

@@ -1,0 +1,58 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="volverAtras()">
+        <ion-icon name="arrow-back-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Seleccionar Vehículo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <!-- Conductor activo -->
+  <ion-item color="light" lines="full">
+    <ion-icon name="person-circle-outline" slot="start" color="primary"></ion-icon>
+    <ion-label>
+      <p>Conductor</p>
+      <h3>{{ perfilNombre }}</h3>
+    </ion-label>
+  </ion-item>
+
+  <!-- Mientras carga -->
+  <div *ngIf="cargando" style="text-align: center; margin-top: 40px;">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Cargando vehículos...</p>
+  </div>
+
+  <!-- Si hay error -->
+  <div *ngIf="error" style="text-align: center; margin-top: 40px;">
+    <ion-icon name="alert-circle-outline" color="danger" size="large"></ion-icon>
+    <p>{{ error }}</p>
+  </div>
+
+  <!-- Lista de vehículos -->
+  <ion-list *ngIf="!cargando && !error">
+    <ion-list-header>
+      <ion-label>
+        <h2>Vehículos disponibles</h2>
+        <p>{{ vehiculos.length }} vehículos registrados</p>
+      </ion-label>
+    </ion-list-header>
+
+    <ion-item
+      *ngFor="let vehiculo of vehiculos"
+      button
+      detail="true"
+      (click)="seleccionarVehiculo(vehiculo)">
+      <ion-icon name="car-outline" slot="start" color="primary"></ion-icon>
+      <ion-label>
+        <h3>{{ vehiculo.placa }}</h3>
+        <p>{{ vehiculo.marca }} {{ vehiculo.modelo }}</p>
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>
